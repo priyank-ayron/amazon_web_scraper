@@ -62,8 +62,7 @@ def get_reviews(url, headers):
 
 
 def print_by_format(title, url, about, description, reviews):
-    print(
-        '************************************************************************************************************************************************************************')
+    print('*************************************************************************************************************************')
     print("Title:")
     print(title)
     print('\n')
@@ -93,28 +92,23 @@ def get_short_urls(path):
     return short_urls
 
 
-path = '/Users/priagarwal/web_scraping/sample_web_scraping/url.txt'
+path = 'url.txt'
 short_urls = get_short_urls(path)
 
 headers = {
     'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
     'Accept-Langugae': "en-US, en;q=0.5"}
 
-#for short_url in short_urls:
-if 1:
-    '''
+for short_url in short_urls:
     if not short_url.startswith('https://'):
         short_url = 'https://' + short_url
     url = unshorten_url(short_url)
-    '''
+
     url = "https://www.whitepages.com/phone/1-816-806-2289"
     page = requests.get(url, headers=headers)
     soup = BeautifulSoup(page.content, "html.parser")
-    print(soup)
-    '''
     title = get_title(soup)
     about = get_about(soup)
     description = get_description(soup)
     reviews = get_reviews(url, headers)
     print_by_format(title, url, about, description, reviews)
-    '''
